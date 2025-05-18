@@ -1,0 +1,74 @@
+/* Estilo general: modo oscuro */
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Título */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #00ffd5;
+}
+
+/* Tablero del juego: 2x2 */
+.game-board {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* Botones de colores */
+.color-btn {
+  width: 140px;
+  height: 140px;
+  border-radius: 15px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px #000;
+}
+
+.red { background-color: #ff4d4d; }
+.green { background-color: #4dff88; }
+.blue { background-color: #4da6ff; }
+.yellow { background-color: #ffee4d; }
+
+/* Efecto cuando el color está activo (se muestra la secuencia o clic del jugador) */
+.color-btn.active {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px white;
+}
+
+/* Botón de inicio */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #222;
+  color: #00ffd5;
+  border: 2px solid #00ffd5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #00ffd5;
+  color: #121212;
+}
+
+/* Texto del nivel */
+#level {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 15px;
+  color: #ffffff;
+}

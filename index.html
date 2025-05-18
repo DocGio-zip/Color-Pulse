@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juego de Memoria - Simon</title>
+  <!-- Enlace al archivo CSS externo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Título del juego -->
+  <h1>Color Pulse</h1>
+
+  <!-- Contenedor principal de los botones de colores -->
+  <div class="game-board">
+    <!-- Botones con diferentes colores que se activan al hacer clic -->
+    <div class="color-btn red" id="red" onclick="playerClick('red')"></div>
+    <div class="color-btn green" id="green" onclick="playerClick('green')"></div>
+    <div class="color-btn blue" id="blue" onclick="playerClick('blue')"></div>
+    <div class="color-btn yellow" id="yellow" onclick="playerClick('yellow')"></div>
+  </div>
+
+  <!-- Muestra el nivel actual del juego -->
+  <p id="level">Nivel: 0</p>
+
+  <!-- Botón para iniciar el juego -->
+  <button onclick="startGame()">Iniciar juego</button>
+
+  <!-- Enlace al archivo JavaScript externo -->
+  <script src="script.js"></script>
+</body>
+</html>
