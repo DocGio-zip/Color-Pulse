@@ -1,32 +1,103 @@
 <!DOCTYPE html>
+<!-- Define que este es un documento HTML5 -->
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Juego de Memoria - Simon</title>
-  <!-- Enlace al archivo CSS externo -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- Título del juego -->
-  <h1>Color Pulse</h1>
+  <meta charset="UTF-8" />
+  <!-- Configura la codificación de caracteres a UTF-8 para soportar caracteres especiales -->
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Hace que la página sea responsiva para dispositivos móviles -->
 
-  <!-- Contenedor principal de los botones de colores -->
-  <div class="game-board">
-    <!-- Botones con diferentes colores que se activan al hacer clic -->
-    <div class="color-btn red" id="red" onclick="playerClick('red')"></div>
-    <div class="color-btn green" id="green" onclick="playerClick('green')"></div>
-    <div class="color-btn blue" id="blue" onclick="playerClick('blue')"></div>
-    <div class="color-btn yellow" id="yellow" onclick="playerClick('yellow')"></div>
+  <title>ColorPulse</title>
+  <!-- Título de la pestaña del navegador -->
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- Enlace al archivo de estilos CSS externo -->
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>ColorPulse</h1>
+    <!-- Título principal del juego -->
+
+    <label for="theme-select">Estilo visual:</label>
+    <!-- Etiqueta para el selector de tema visual -->
+
+    <select id="theme-select">
+      <!-- Selector para cambiar el tema del juego -->
+      <option value="dark">Oscuro</option>
+      <option value="neon">Neón</option>
+    </select>
+
+    <div id="level">Nivel: 0</div>
+    <!-- Muestra el nivel actual del jugador -->
+
+    <!-- Cuadros de colores que el jugador debe seguir -->
+    <div class="grid">
+      <button class="color-button" id="red"></button>
+      <button class="color-button" id="green"></button>
+      <button class="color-button" id="blue"></button>
+      <button class="color-button" id="yellow"></button>
+    </div>
+
+    <!-- Botones de control del juego -->
+    <button id="start-btn">Iniciar Juego</button>
+    <!-- Inicia la partida -->
+
+    <button id="repeat-btn">Repetir Patrón (3)</button>
+    <!-- Reproduce nuevamente la secuencia (con límite de usos) -->
+
+    <button id="mute-btn">🔊 Música</button>
+    <!-- Activa o desactiva la música de fondo -->
   </div>
 
-  <!-- Muestra el nivel actual del juego -->
-  <p id="level">Nivel: 0</p>
+  <!-- Modal que aparece cuando el jugador pierde -->
+  <div id="game-over-modal" class="hidden">
+    <h2>¡Juego Terminado!</h2>
+    <button id="restart-btn">Reiniciar</button>
+  </div>
 
-  <!-- Botón para iniciar el juego -->
-  <button onclick="startGame()">Iniciar juego</button>
+  <!-- Archivos de audio para efectos y música -->
+  <audio id="bg-music" loop src="Beethoven Virus Diana Boncheva Feat BanYa Full Version - Copyright Free [2FEh78JV6Z8].mp3"></audio>
+  <!-- Música de fondo que se repite en bucle -->
 
-  <!-- Enlace al archivo JavaScript externo -->
+  <audio id="fail-sound" src="peppa-pig-fail.mp3"></audio>
+  <!-- Sonido de fallo al cometer un error -->
+
+  <!-- Sonidos para cada botón de color -->
+  <audio id="click-red" src="mouse-click-by-ek6_VR0O6PL.mp3"></audio>
+  <audio id="click-green" src="mouse-click-by-ek6_VR0O6PL.mp3"></audio>
+  <audio id="click-blue" src="mouse-click-by-ek6_VR0O6PL.mp3"></audio>
+  <audio id="click-yellow" src="mouse-click-by-ek6_VR0O6PL.mp3"></audio>
+
+  <audio id="restart-sound" src="disappear.mp3"></audio>
+  <!-- Sonido que se reproduce al reiniciar el juego -->
+
+  <!-- Botón oculto que revela un video secreto (easter egg) -->
+  <button id="secret-video-btn" title="Ver video secreto"></button>
+
+  <!-- Modal que contiene el video secreto -->
+  <div id="video-modal" class="hidden">
+    <div class="video-container">
+      <button id="close-video-btn">✖</button>
+      <!-- Botón para cerrar el video modal -->
+
+      <video id="secret-video" width="480" controls>
+        <source src="TralaleroTralala.mp4" type="video/mp4" />
+        <!-- Video secreto en formato MP4 -->
+      </video>
+    </div>
+  </div>
+
+  <!-- Imagen pequeña de gato como otro easter egg -->
+  <img id="cat-image" src="Gato1.png" alt="Gato" title="Gatito secreto" />
+
+  <!-- Sonido que se reproduce cuando se activa el gato secreto -->
+  <audio id="cat-audio" src="hello-everynyan_obAL9Bo.mp3"></audio>
+
+  <!-- Enlace al archivo de JavaScript que contiene la lógica del juego -->
   <script src="script.js"></script>
+
 </body>
 </html>

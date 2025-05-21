@@ -1,74 +1,231 @@
-/* Estilo general: modo oscuro */
+/* ===== Estilo general para el cuerpo ===== */
 body {
-  background-color: #121212;
-  color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212; /* Fondo oscuro por defecto */
+  color: #ffffff; /* Texto blanco */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
+
+/* ===== Contenedor principal del juego ===== */
+.container {
+  margin-top: 40px;
   text-align: center;
-  margin-top: 50px;
 }
 
-/* Título */
+/* Título principal */
 h1 {
-  margin-bottom: 20px;
-  font-size: 2em;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
   color: #00ffd5;
+  text-shadow: 0 0 10px #00ffd5; /* Efecto de brillo */
 }
 
-/* Tablero del juego: 2x2 */
-.game-board {
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
+/* ===== Panel de botones de colores (juego de memoria) ===== */
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 120px); /* Dos columnas de 120px */
+  grid-gap: 20px;
+  margin: 20px auto;
+  justify-content: center;
 }
 
-/* Botones de colores */
-.color-btn {
-  width: 140px;
-  height: 140px;
-  border-radius: 15px;
+/* Estilo base de cada botón de color */
+.color-button {
+  width: 120px;
+  height: 120px;
+  border: none;
+  border-radius: 20px;
   opacity: 0.8;
-  transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 0 10px #000;
+  transition: transform 0.1s, opacity 0.2s;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-.red { background-color: #ff4d4d; }
-.green { background-color: #4dff88; }
-.blue { background-color: #4da6ff; }
-.yellow { background-color: #ffee4d; }
-
-/* Efecto cuando el color está activo (se muestra la secuencia o clic del jugador) */
-.color-btn.active {
+/* Efecto al pasar el cursor sobre un botón */
+.color-button:hover {
   opacity: 1;
-  transform: scale(1.1);
-  box-shadow: 0 0 20px white;
+  transform: scale(1.05); /* Agrandamiento sutil */
 }
 
-/* Botón de inicio */
+/* Colores específicos para cada botón */
+#red { background-color: #ff4d4d; }
+#green { background-color: #4dff88; }
+#blue { background-color: #4da6ff; }
+#yellow { background-color: #ffff66; }
+
+/* ===== Botones de control (iniciar, repetir, etc.) ===== */
 button {
-  margin-top: 20px;
+  margin: 10px;
   padding: 10px 20px;
-  font-size: 16px;
-  background-color: #222;
-  color: #00ffd5;
-  border: 2px solid #00ffd5;
-  border-radius: 8px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #1f1f1f;
+  color: #fff;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #00ffd5;
-  color: #121212;
+  background-color: #333;
 }
 
-/* Texto del nivel */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== Nivel mostrado en pantalla ===== */
 #level {
-  font-weight: bold;
-  font-size: 20px;
-  margin-top: 15px;
-  color: #ffffff;
+  font-size: 1.3rem;
+  margin: 20px 0;
+  color: #a0a0a0;
+}
+
+/* ===== Modal de "Juego Terminado" ===== */
+#game-over-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 18, 18, 0.95); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  color: white;
+}
+
+/* Oculta el modal cuando tiene la clase .hidden */
+#game-over-modal.hidden {
+  display: none;
+}
+
+#game-over-modal h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ff6666;
+}
+
+/* ===== Tema visual alternativo: Neón ===== */
+body.theme-neon {
+  background-color: #000000;
+  color: #00ffcc;
+}
+
+body.theme-neon .color-button {
+  box-shadow: 0 0 25px #00ffcc;
+}
+
+body.theme-neon h1 {
+  text-shadow: 0 0 15px #00ffcc;
+}
+
+/* ===== Botón secreto para mostrar el video oculto ===== */
+#secret-video-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.15; /* Casi invisible */
+  background: url('icono-video.png') no-repeat center center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  z-index: 3000;
+  transition: opacity 0.3s;
+}
+
+#secret-video-btn:hover {
+  opacity: 0.6;
+}
+
+/* ===== Imagen del gato escondido (Easter Egg) ===== */
+#cat-image {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.15; /* Semi-oculto */
+  cursor: pointer;
+  border-radius: 50%;
+  transition: opacity 0.3s;
+  z-index: 2000;
+}
+
+#cat-image:hover {
+  opacity: 0.6;
+}
+
+/* Versión animada del gato cuando se activa */
+#cat-image.active {
+  position: fixed;
+  top: -200px; /* Comienza fuera del viewport */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  border-radius: 20px;
+  animation: slideDown 6s forwards;
+  animation-timing-function: ease-in-out;
+  z-index: 4000;
+}
+
+/* Animación que baja el gato desde arriba al centro */
+@keyframes slideDown {
+  to {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ===== Contenedor y estilo del video oculto ===== */
+#video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18,18,18,0.9); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+#video-modal.hidden {
+  display: none;
+}
+
+.video-container {
+  position: relative;
+  background: #000;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Botón para cerrar el video */
+#close-video-btn {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #333;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  align-self: flex-end;
+  font-size: 1.2rem;
 }
